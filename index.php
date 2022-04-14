@@ -3,8 +3,9 @@
 
   require 'helpers/dbConnection.php';
 
-  $sql = "select * from blogs"; 
+  $sql = "select tasks.* , users.name   from tasks  join users on tasks.user_id = users.id"; 
   $data = mysqli_query($con,$sql);  
+  echo $todayDate = date('Y-m-d');
 
 
 ?>
@@ -48,7 +49,7 @@
 
 
         <div class="page-header">
-            <h1>Read Blogs </h1>
+            <h1>Read Tasks </h1>
             <br>
 
             <?php
@@ -65,16 +66,17 @@
 
         </div>
 
-        <a href="create.php">+ blog</a>
+        <a href="create.php">+ Task</a>
 
         <table class='table table-hover table-responsive table-bordered'>
             <!-- creating our table heading -->
             <tr>
                 <th>ID</th>
-                <th>Image</th>
+                <th>User</th>
                 <th>Title</th>
                 <th>Content</th>
-                <th>Blog Date</th>
+                <th>Blog Start Date</th>
+                <th>Blog End Date</th>
                 <th>action</th>
             </tr>
 
@@ -86,12 +88,18 @@
        ?>
             <tr>
                    <td><?php echo $raw['id'];?></td>
-                   <td><?php echo '<img src="uploads/'.$raw['image'].'" alt="HTML5 Icon" style="width:200px;height:92px text-align:center; margin-left:90px;">';?></td>
+                   <td><?php echo $raw['name'];?></td>
+                   <!-- <td><?php echo '<img src="uploads/'.$raw['image'].'" alt="HTML5 Icon" style="width:200px;height:92px text-align:center; margin-left:90px;">';?></td> -->
                    <td><?php echo $raw['title'];?></td>
                    <td><?php echo $raw['content'];?></td>
-                   <td><?php echo $raw['blogdate'];?></td>
+                   <td><?php echo $raw['startdate'];?></td>
+                   <td><?php echo $raw['enddate'];?></td>
+
                 <td>
-                    <a href='delete.php?id=<?php echo $raw['id'];?>' class='btn  btn-danger m-r-3em'>Delete</a>
+
+                        <a href='delete.php?id=<?php echo $raw['id'];?>' class='btn  btn-danger m-r-3em'>Delete</a>
+
+
                     <a href='edit.php?id=<?php echo $raw['id'];?>' class='btn btn-primary m-r-3em'>Edit</a>
                 </td>
             </tr>
