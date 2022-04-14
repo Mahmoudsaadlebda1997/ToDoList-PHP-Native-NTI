@@ -4,7 +4,7 @@
 # Create DB CONNECTION ...... 
 
 $server = "localhost";    // 127.0.0.1 
-$dbName = "nti_lebda"; 
+$dbName = "nti_todolist"; 
 $dbUser = "root"; 
 $dbPassword = "";
 
