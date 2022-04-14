@@ -12,9 +12,9 @@ $sql = "select * from users where id = $id";
 $op  = mysqli_query($con, $sql);
 $data = mysqli_fetch_assoc($op);
 #############################################################################################################
-# Fetch dep data ..... 
-$sql = "select * from departments"; 
-$dep_op = mysqli_query($con,$sql);
+// # Fetch dep data ..... 
+// $sql = "select * from departments"; 
+// $dep_op = mysqli_query($con,$sql);
 #############################################################################################################
 
 
@@ -46,11 +46,11 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
 
         # Validate Dep id 
-        if (empty($dep_id)) {
-            $errors['Department'] = "Field Required";
-        } elseif (!filter_var($dep_id, FILTER_VALIDATE_INT)) {
-            $errors['Department'] = "Invalid Dep id Format";
-        }
+        // if (empty($dep_id)) {
+        //     $errors['Department'] = "Field Required";
+        // } elseif (!filter_var($dep_id, FILTER_VALIDATE_INT)) {
+        //     $errors['Department'] = "Invalid Dep id Format";
+        // }
 
         
 
@@ -107,7 +107,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     }
 
 
-        $sql = "update users set name='$name' , email = '$email' , image = '$FinalName' , dep_id = $dep_id where  id = $id";
+        // $sql = "update users set name='$name' , email = '$email' , image = '$FinalName' , dep_id = $dep_id where  id = $id";
+        $sql = "update users set name='$name' , email = '$email' , image = '$FinalName' where  id = $id";
 
         $op =  mysqli_query($con, $sql);
 
@@ -167,7 +168,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                    placeholder="Password">
         </div> -->
 
-        <div class="form-group">
+        <!-- <div class="form-group">
                 <label for="exampleInputPassword">Department</label>
                 <select class="form-control" name="dep_id" >
                  <?php 
@@ -176,7 +177,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 <option value="<?php echo $raw['id'];?>"   <?php if($data['dep_id'] == $raw['id']) { echo 'selected';}?> ><?php echo $raw['title'];?></option>    
                <?php } ?>
             </select>   
-            </div>
+            </div> -->
 
 
 

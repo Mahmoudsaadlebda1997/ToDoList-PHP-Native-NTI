@@ -4,7 +4,8 @@
   require '../helpers/dbConnection.php';
   require 'checklogin.php';
 
-  $sql = "select users.* , departments.title   from users  join departments on users.dep_id = departments.id "; 
+//   $sql = "select users.* , departments.title   from users  join departments on users.dep_id = departments.id ";
+    $sql = "select * from users";
   $data = mysqli_query($con,$sql);  
 
 
@@ -73,7 +74,7 @@
         </div>
 
         <a href="create.php">+ Account</a>   ||    <a href="logout.php">LogOut</a>
-
+        || <a href="../index.php">My Tasks</a>
         <table class='table table-hover table-responsive table-bordered'>
             <!-- creating our table heading -->
             <tr>
@@ -81,7 +82,7 @@
                 <th>Name</th>
                 <th>Email</th>
                  <th>Image</th>
-                 <th>Department</th>
+                 <!-- <th>Department</th> -->
                 <th>action</th>
             </tr>
 
@@ -96,7 +97,7 @@
                    <td><?php echo $raw['name'];?></td>
                    <td><?php echo $raw['email'];?></td>
                    <td> <img src="uploads/<?php echo $raw['image'];?>" alt="userImage"  height="50px" width="50px" > </td>  
-                   <td><?php echo $raw['title'];?></td>
+                   <!-- <td><?php echo $raw['title'];?></td> -->
                 <td>
                     
               <?php 

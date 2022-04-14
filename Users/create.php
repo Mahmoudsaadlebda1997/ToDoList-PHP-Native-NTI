@@ -5,8 +5,8 @@ require '../helpers/functions.php';
 
 #############################################################################################################
 # Fetch dep data ..... 
-$sql = "select * from departments"; 
-$dep_op = mysqli_query($con,$sql);
+// $sql = "select * from departments"; 
+// $dep_op = mysqli_query($con,$sql);
 #############################################################################################################
 
 
@@ -16,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $name     = Clean($_POST['name']);
     $password = Clean($_POST['password']);
     $email    = Clean($_POST['email']);
-    $dep_id   = Clean($_POST['dep_id']);            //filter_var(Clean($_POST['dep_id']),FILTER_SANITIZE_NUMBER_INT); 
+    // $dep_id   = Clean($_POST['dep_id']);            //filter_var(Clean($_POST['dep_id']),FILTER_SANITIZE_NUMBER_INT); 
 
     # Validate ...... 
     $errors = [];
@@ -43,12 +43,12 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         $errors['Password'] = "Length Must be >= 6 chars";
     }
 
-    # Validate Dep id 
-    if (empty($dep_id)) {
-        $errors['Department'] = "Field Required";
-    } elseif (!filter_var($dep_id, FILTER_VALIDATE_INT)) {
-        $errors['Department'] = "Invalid Dep id Format";
-    }
+    // # Validate Dep id 
+    // if (empty($dep_id)) {
+    //     $errors['Department'] = "Field Required";
+    // } elseif (!filter_var($dep_id, FILTER_VALIDATE_INT)) {
+    //     $errors['Department'] = "Invalid Dep id Format";
+    // }
 
     # Validate Image 
     if (empty($_FILES['image']['name'])) {
@@ -95,7 +95,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
             $password = md5($password);
 
-            $sql = "insert into users (name,email,password,image,dep_id) values ('$name','$email','$password','$FinalName',$dep_id)";
+            // $sql = "insert into users (name,email,password,image,dep_id) values ('$name','$email','$password','$FinalName',$dep_id)";
+                $sql = "insert into users (name,email,password,image) values ('$name','$email','$password','$FinalName')";
 
             $op =  mysqli_query($con, $sql);
 
@@ -147,22 +148,14 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             </div>
 
             <div class="form-group">
-                <label for="exampleInputPassword">New Password</label>
+                <label for="exampleInputPassword">Password</label>
                 <input type="password" class="form-control" required id="exampleInputPassword1" name="password" placeholder="Password">
             </div>
 
 
 
-            <div class="form-group">
-                <label for="exampleInputPassword">Department</label>
-                <select class="form-control" name="dep_id" >
-                 <?php 
-                    while($raw = mysqli_fetch_assoc($dep_op)){
-                ?>      
-                <option value="<?php echo $raw['id'];?>"><?php echo $raw['title'];?></option>    
-               <?php } ?>
-            </select>   
-            </div>
+
+
 
 
             <div class="form-group">
@@ -180,3 +173,31 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 </body>
 
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <!-- <div class="form-group">
+                <label for="exampleInputPassword">Department</label>
+                <select class="form-control" name="dep_id" >
+                 <!-- <?php 
+                    while($raw = mysqli_fetch_assoc($dep_op)){
+                ?>      
+               <?php } ?> -->
+               <option value="<?php echo $raw['id'];?>"><?php echo $raw['title'];?></option>    
+            </select>   
+            </div> -->
+
